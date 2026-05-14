@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 941 1672">
+<defs><linearGradient id="g" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#47b9ff"/><stop offset=".45" stop-color="#42a84b"/><stop offset="1" stop-color="#0c5a2f"/></linearGradient></defs>
+<rect width="941" height="1672" fill="url(#g)"/>
+<text x="470" y="740" text-anchor="middle" font-size="74" font-family="Arial" fill="#fff" font-weight="900">МОЯ ФЕРМА</text>
+<text x="470" y="820" text-anchor="middle" font-size="34" font-family="Arial" fill="#fff">fallback screen</text>
+</svg>
