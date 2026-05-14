@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 941 1672">
+<defs>
+<linearGradient id="sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2b8fd9"/><stop offset=".48" stop-color="#88d671"/><stop offset="1" stop-color="#3b2414"/></linearGradient>
+<filter id="s" x="-30%" y="-30%" width="160%" height="160%"><feDropShadow dx="0" dy="8" stdDeviation="6" flood-opacity=".35"/></filter>
+</defs>
+<rect width="941" height="1672" fill="url(#sky)"/>
+<circle cx="160" cy="240" r="52" fill="#fff" opacity=".8"/><circle cx="215" cy="230" r="70" fill="#fff" opacity=".75"/><circle cx="280" cy="250" r="48" fill="#fff" opacity=".8"/>
+<circle cx="620" cy="190" r="45" fill="#fff" opacity=".8"/><circle cx="675" cy="180" r="65" fill="#fff" opacity=".75"/><circle cx="742" cy="205" r="42" fill="#fff" opacity=".8"/>
+<path d="M0 455 C180 360 300 420 470 330 C650 235 760 365 941 305 L941 700 L0 700Z" fill="#72bb55" opacity=".9"/>
+<path d="M0 610 C200 530 375 610 520 500 C690 390 800 510 941 465 L941 900 L0 900Z" fill="#53a845"/>
+<path d="M0 880 C230 790 460 860 650 760 C780 690 875 735 941 710 L941 1672 L0 1672Z" fill="#23833f"/>
+<text x="470" y="520" text-anchor="middle" font-size="140">🐔🐔</text>
+<text x="470" y="635" text-anchor="middle" font-family="Arial, sans-serif" font-size="68" font-weight="900" fill="#fff" stroke="#315b15" stroke-width="7" paint-order="stroke">КУРЯТНИК</text>
+<text x="470" y="695" text-anchor="middle" font-family="Arial, sans-serif" font-size="32" font-weight="700" fill="#fff" opacity=".92">уровень 2</text>
+</svg>
