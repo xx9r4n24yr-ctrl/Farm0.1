@@ -42,7 +42,7 @@ button { font: inherit; }
   z-index: 0;
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: fill;
   object-position: center;
   display: block;
 }
@@ -261,4 +261,14 @@ button { font: inherit; }
 @supports not (height: 100dvh) {
   #app { height: 100vh; }
   .game { height: 100vh; }
+}
+
+
+/* v11: the screen art already includes its own visual HUD.
+   Invisible hitboxes now match the image layout. */
+.hud-layer { display: none; }
+.game.debug-hitboxes .hud-layer { display: block; }
+.game.debug-hitboxes .hit {
+  background: rgba(255,255,255,.16);
+  box-shadow: inset 0 0 0 2px rgba(255,240,120,.65);
 }

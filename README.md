@@ -1,4 +1,4 @@
-# Моя Ферма — Telegram Mini App v10 Design Fixed
+# Моя Ферма — Telegram Mini App v11 Hitboxes Bugfix
 
 Эта версия объединяет:
 - наш визуальный дизайн экранов через JPG-ассеты;
@@ -35,3 +35,17 @@ assets/
 
 После загрузки открыть с параметром:
 ?v=10
+
+
+## v11 fixes
+
+- Fixed invisible button zones: they now match the full art coordinate system.
+- Changed screen image from `object-fit: cover` to `object-fit: fill` so iPhone/Safari does not crop the art and shift hitboxes.
+- Removed duplicate visible HUD chips over the baked-in design.
+- Added debug hitbox mode in Settings/Menu.
+- Reworked hit zones for home cards, fields, market, orders, animal screens and bottom navigation.
+- Reduced modal recursion / stale render bugs.
+- Kept v9 iOS height fix.
+
+Open after upload:
+`https://xx9r4n24yr-ctrl.github.io/?v=11`
