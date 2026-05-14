@@ -1,70 +1,33 @@
 <!doctype html>
 <html lang="ru">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, maximum-scale=1, user-scalable=no">
-  <meta name="theme-color" content="#1497d7">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, maximum-scale=1, user-scalable=no" />
+  <meta name="theme-color" content="#0b8fd9" />
   <title>Моя Ферма</title>
-  <link rel="stylesheet" href="./styles.css?v=8">
+  <link rel="preload" as="image" href="./assets/home.jpg">
+  <link rel="stylesheet" href="./styles.css?v=10" />
+  <script src="https://telegram.org/js/telegram-web-app.js"></script>
 </head>
 <body>
   <main id="app">
-    <section id="game" class="game screen-home" aria-label="Моя ферма">
-      <div id="scene" class="scene"></div>
-
-      <header class="topbar">
-        <div class="avatar"><span>👨‍🌾</span><b>25</b></div>
-        <div class="counter coin">🪙 <span id="coins">12 450</span><button data-plus>+</button></div>
-        <div class="counter gem">💎 <span id="gems">320</span><button data-plus>+</button></div>
-        <div class="counter energy">⚡ <span id="energy">78/100</span><small>02:45</small><button data-plus>+</button></div>
-        <button id="menuBtn" class="round menu">☰</button>
-      </header>
-
-      <button id="questBtn" class="side-btn quest"><span class="badge">3</span><i>📋</i><b>Квесты</b></button>
-      <button id="bonusBtn" class="side-btn bonus"><span class="badge">5</span><i>🎁</i><b>Бонусы</b></button>
-
-      <section id="homePanel" class="home-panel">
-        <div class="farm-title">Моя ферма<small>Уровень 12</small></div>
-        <div class="cards">
-          <button class="card" data-screen="coop"><i>🐄</i><b>Животные</b></button>
-          <button class="card" data-screen="fields"><i>🌾</i><b>Поля</b></button>
-          <button class="card" data-screen="market"><span class="badge">2</span><i>🍎</i><b>Рынок</b></button>
-          <button class="card" data-screen="orders"><i>🚚</i><b>Заказы</b></button>
-          <button class="card" data-screen="research"><span class="badge">1</span><i>🔬</i><b>Исследования</b></button>
-          <button class="card" id="achievementsBtn"><i>🏆</i><b>Достижения</b></button>
-        </div>
-      </section>
-
-      <section id="animalPanel" class="animal-panel" hidden>
-        <div class="wood-title"><button id="backBtn">←</button><h1 id="animalTitle">КУРЯТНИК</h1></div>
-        <div class="animal-stage" id="animalStage"></div>
-        <div class="animal-cards">
-          <article class="info-card"><h3 id="levelTitle">УРОВЕНЬ</h3><p id="levelText">Мест: 4</p><button id="upgradeBtn" class="green">Улучшить</button></article>
-          <article class="info-card"><h3 id="animalCardTitle">КУРИЦЫ</h3><p id="animalText">Куплено 4/4</p><button id="buyBtn" class="blue">Купить</button></article>
-          <article class="info-card"><h3>СОБРАНО</h3><p id="productText">🥚 0</p><button id="collectBtn" class="green">Собрать всё</button></article>
-        </div>
-      </section>
-
-      <section id="simplePanel" class="simple-panel" hidden>
-        <div class="wood-title"><button id="simpleBackBtn">←</button><h1 id="simpleTitle">ПОЛЯ</h1></div>
-        <div id="simpleContent" class="simple-content"></div>
-      </section>
-
-      <nav class="bottom-nav">
-        <button data-modal="shop"><i>🏪</i><b>Магазин</b></button>
-        <button data-modal="friends"><i>👥</i><b>Друзья</b></button>
-        <button data-modal="tasks"><i>📋</i><b>Задания</b></button>
-        <button data-modal="mail"><i>✉️</i><b>Почта</b></button>
-        <button data-modal="settings"><i>⚙️</i><b>Настройки</b></button>
-      </nav>
-
+    <section id="game" class="game" aria-label="Моя ферма">
+      <img id="screenArt" class="screen-art" src="./assets/home.jpg" alt="Моя ферма" draggable="false"
+           onerror="this.onerror=null;this.src='./assets/fallback.svg';" />
+      <div id="bootFallback" class="boot-fallback">
+        <div class="boot-icon">🏡</div>
+        <div class="boot-title">МОЯ ФЕРМА</div>
+        <div class="boot-sub">Игра загружается...</div>
+      </div>
+      <div id="hudLayer" class="hud-layer"></div>
+      <div id="hitLayer" class="hit-layer"></div>
       <div id="toast" class="toast"></div>
 
       <div id="modalOverlay" class="modal-overlay" hidden>
         <article class="modal">
           <button id="modalClose" class="modal-close">×</button>
           <h2 id="modalTitle">Окно</h2>
-          <div id="modalBody"></div>
+          <div id="modalBody" class="modal-body"></div>
         </article>
       </div>
 
@@ -73,6 +36,6 @@
       </noscript>
     </section>
   </main>
-  <script src="./app.js?v=8"></script>
+  <script src="./app.js?v=10"></script>
 </body>
 </html>

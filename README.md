@@ -1,13 +1,37 @@
-# Моя Ферма — v8 no green screen
+# Моя Ферма — Telegram Mini App v10 Design Fixed
 
-Эта версия больше не зависит от больших JPG-картинок для отображения интерфейса.  
-Даже если assets не загрузятся, UI всё равно будет виден, потому что основные элементы нарисованы HTML/CSS.
+Эта версия объединяет:
+- наш визуальный дизайн экранов через JPG-ассеты;
+- исправление iPhone/Safari высоты из v9;
+- нормальную структуру файлов.
 
 Структура:
 - index.html
 - styles.css
 - app.js
-- assets/*.svg
+- assets/
+  - home.jpg
+  - fields.jpg
+  - market.jpg
+  - orders.jpg
+  - research.jpg
+  - coop1.jpg
+  - coop2.jpg
+  - coop3.jpg
+  - coop4.jpg
+  - pigsty1.jpg
+  - sheepfold1.jpg
+  - cowbarn1.jpg
+  - fallback.svg
 
-Заливать в GitHub Pages нужно именно содержимое архива в корень:
-index.html должен лежать рядом со styles.css, app.js и папкой assets.
+## Как залить
+
+Загружать нужно содержимое архива в корень GitHub Pages:
+
+index.html
+styles.css
+app.js
+assets/
+
+После загрузки открыть с параметром:
+?v=10
