@@ -1,1 +1,13 @@
-
+<svg width="420" height="180" viewBox="0 0 420 180" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="0" y2="1">
+      <stop stop-color="#8FE34D"/>
+      <stop offset="1" stop-color="#2F8E2E"/>
+    </linearGradient>
+  </defs>
+  <path d="M44 132c-18-28-7-69 27-86 17-9 38-10 56-4 18-24 54-35 86-24 22 7 39 23 48 42 27-13 63-8 86 15 23 23 30 58 16 87H44z" fill="url(#g)" stroke="#1f6d24" stroke-width="6"/>
+  <text x="210" y="84" text-anchor="middle" font-family="Arial, sans-serif" font-weight="900" font-size="56" fill="#FFD54A" stroke="#8B4C16" stroke-width="7" paint-order="stroke">МОЯ</text>
+  <text x="210" y="136" text-anchor="middle" font-family="Arial, sans-serif" font-weight="900" font-size="62" fill="#FFB229" stroke="#8B4C16" stroke-width="7" paint-order="stroke">ФЕРМА</text>
+  <rect x="130" y="145" width="160" height="24" rx="12" fill="#6E431E"/>
+  <text x="210" y="162" text-anchor="middle" font-family="Arial, sans-serif" font-weight="800" font-size="14" fill="#FFE7AA">BUILD • FARM • EARN</text>
+</svg>
