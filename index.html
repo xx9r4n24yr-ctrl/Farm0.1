@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, maximum-scale=1, user-scalable=no" />
+  <meta name="theme-color" content="#0b8fd9" />
+  <title>Моя Ферма — Telegram Mini App</title>
+  <link rel="preload" as="image" href="assets/home.webp" />
+  <link rel="preload" as="image" href="assets/pigsty.webp" />
+  <link rel="preload" as="image" href="assets/sheepfold.webp" />
+  <link rel="preload" as="image" href="assets/cowbarn.webp" />
+  <link rel="stylesheet" href="styles.css" />
+  <script src="https://telegram.org/js/telegram-web-app.js"></script>
+</head>
+<body>
+  <main id="app" aria-label="Моя Ферма">
+    <section id="game" class="game screen-home" data-screen="home">
+      <div id="hitLayer" class="hit-layer" aria-hidden="false"></div>
+
+      <div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+      <div id="modalOverlay" class="modal-overlay" hidden>
+        <article id="modal" class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+          <button id="modalClose" class="modal-close" aria-label="Закрыть">×</button>
+          <h2 id="modalTitle">Окно</h2>
+          <div id="modalBody" class="modal-body"></div>
+        </article>
+      </div>
+    </section>
+  </main>
+  <script src="app.js"></script>
+</body>
+</html>
