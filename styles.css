@@ -1,18 +1,8 @@
 :root {
-  --cream: #fff0c3;
-  --cream2: #ead28e;
-  --brown: #603912;
-  --brown2: #8a5b24;
-  --green: #4d9d19;
-  --green2: #2f7412;
-  --gold: #ffc63d;
-  --blue: #0d94d4;
-  --red: #d84231;
-  --ink: #3d2c16;
   --screen-ratio: 941 / 1672;
   --screen-w: min(100vw, 560px);
+  --ink: #3d2c16;
 }
-
 * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
 html, body {
   margin: 0;
@@ -20,7 +10,7 @@ html, body {
   height: 100%;
   overflow: hidden;
   overscroll-behavior: none;
-  touch-action: none;
+  touch-action: manipulation;
   user-select: none;
   background: radial-gradient(circle at 50% 10%, #36a7f3 0, #0b693c 62%, #063522 100%);
   font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", Roboto, Arial, sans-serif;
@@ -41,23 +31,21 @@ button { font: inherit; }
   max-height: 100dvh;
   aspect-ratio: var(--screen-ratio);
   overflow: hidden;
-  background-position: center;
-  background-size: 100% 100%;
-  background-repeat: no-repeat;
   border-radius: clamp(0px, 1.6vw, 18px);
   box-shadow: 0 24px 80px rgba(0,0,0,.44);
   isolation: isolate;
+  background: linear-gradient(180deg, #6bc6ff 0%, #2284c8 35%, #165d37 100%);
 }
-.screen-home { background-image: url("assets/home.webp"); }
-.screen-coop { background-image: url("assets/coop.webp"); }
-.screen-fields { background-image: url("assets/fields.webp"); }
-.screen-market { background-image: url("assets/market.webp"); }
-.screen-orders { background-image: url("assets/orders.webp"); }
-.screen-research { background-image: url("assets/research.webp"); }
-.screen-pigsty { background-image: url("assets/pigsty.webp"); }
-.screen-sheepfold { background-image: url("assets/sheepfold.webp"); }
-.screen-cowbarn { background-image: url("assets/cowbarn.webp"); }
-
+.screen-art {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  z-index: 0;
+  display: block;
+}
 .hit-layer { position: absolute; inset: 0; z-index: 10; }
 .hit {
   position: absolute;
@@ -69,10 +57,9 @@ button { font: inherit; }
   cursor: pointer;
 }
 .hit:active {
-  background: rgba(255,255,255,.13);
-  box-shadow: inset 0 0 0 2px rgba(255,255,255,.24);
+  background: rgba(255,255,255,.12);
+  box-shadow: inset 0 0 0 2px rgba(255,255,255,.22);
 }
-
 .toast {
   position: absolute;
   left: 50%;
@@ -96,7 +83,6 @@ button { font: inherit; }
   transition: opacity .2s ease, transform .2s ease;
 }
 .toast.show { opacity: 1; transform: translate(-50%, 0) scale(1); }
-
 .modal-overlay {
   position: absolute;
   inset: 0;

@@ -3,6 +3,7 @@
 
   const $ = (q) => document.querySelector(q);
   const game = $('#game');
+  const screenArt = $('#screenArt');
   const hitLayer = $('#hitLayer');
   const overlay = $('#modalOverlay');
   const modal = $('#modal');
@@ -11,7 +12,7 @@
   const closeBtn = $('#modalClose');
   const toastEl = $('#toast');
 
-  const STORE_KEY = 'my-farm-miniapp-v4-animals-update';
+  const STORE_KEY = 'my-farm-miniapp-v5-fixed-loading';
   const screens = ['home', 'coop', 'pigsty', 'sheepfold', 'cowbarn', 'fields', 'market', 'orders', 'research'];
 
   const defaults = {
@@ -20,10 +21,10 @@
     gems: 320,
     energy: 78,
     level: 12,
-    eggs: 18,
-    milk: 120,
-    wool: 9,
-    meat: 4,
+    eggs: 6,
+    milk: 2,
+    wool: 2,
+    meat: 2,
     wheat: 120,
     corn: 90,
     carrot: 110,
@@ -31,9 +32,9 @@
     sourCream: 1,
     cottageCheese: 1,
     cheese: 1,
-    chickens: 12,
-    coopLevel: 3,
-    coopCapacity: 12,
+    chickens: 4,
+    coopLevel: 1,
+    coopCapacity: 4,
     pigs: 1,
     pigstyLevel: 1,
     pigstyCapacity: 1,
@@ -76,6 +77,9 @@
 
   initTelegram();
   bindBaseEvents();
+  screenArt.addEventListener('error', () => {
+    console.warn('Не удалось загрузить изображение экрана:', screenArt.getAttribute('src'));
+  });
   setScreen(state.screen || 'home', false);
 
   function initTelegram() {
@@ -103,13 +107,15 @@
     document.addEventListener('gesturestart', (e) => e.preventDefault(), { passive: false });
   }
 
+  function deepCopy(obj) { return JSON.parse(JSON.stringify(obj)); }
+
   function load() {
     try {
       const raw = localStorage.getItem(STORE_KEY);
-      if (!raw) return structuredClone(defaults);
-      return deepMerge(structuredClone(defaults), JSON.parse(raw));
+      if (!raw) return deepCopy(defaults);
+      return deepMerge(deepCopy(defaults), JSON.parse(raw));
     } catch (_) {
-      return structuredClone(defaults);
+      return deepCopy(defaults);
     }
   }
 
@@ -131,11 +137,32 @@
 
   function today() { return new Date().toISOString().slice(0, 10); }
 
+  function getScreenAsset(name) {
+    const coopLevel = Math.max(1, Math.min(4, state.coopLevel || 1));
+    const map = {
+      home: 'assets/home.jpg',
+      coop: 'assets/coop' + coopLevel + '.jpg',
+      pigsty: 'assets/pigsty1.jpg',
+      sheepfold: 'assets/sheepfold1.jpg',
+      cowbarn: 'assets/cowbarn1.jpg',
+      fields: 'assets/fields.jpg',
+      market: 'assets/market.jpg',
+      orders: 'assets/orders.jpg',
+      research: 'assets/research.jpg'
+    };
+    return map[name] || map.home;
+  }
+
+  function renderSceneArt() {
+    const src = getScreenAsset(state.screen);
+    if (screenArt.getAttribute('src') !== src) screenArt.setAttribute('src', src);
+  }
+
   function setScreen(name, notice = true) {
     if (!screens.includes(name)) name = 'home';
     state.screen = name;
-    screens.forEach((s) => game.classList.toggle('screen-' + s, s === name));
     game.dataset.screen = name;
+    renderSceneArt();
     renderHits();
     save();
     if (notice) toast(screenLabel(name));
@@ -476,10 +503,12 @@
   }
 
   function collectEggs() {
-    state.eggs += 18;
+    const gain = Math.max(1, state.coopLevel || 1) * 6;
+    state.eggs += gain;
     state.tasks.eggs = true;
     save();
-    toast('Яйца собраны: +18');
+    renderSceneArt();
+    toast('Яйца собраны: +' + gain);
   }
 
   function sell(item) {
@@ -538,9 +567,9 @@
 
 
   const animalConfig = {
-    pigsty: { count:'pigs', level:'pigstyLevel', capacity:'pigstyCapacity', product:'meat', productName:'мясо', buyCost:300, upgradeCost:3800, addCapacity:1, collectAmount:6, label:'свинья' },
-    sheepfold: { count:'sheep', level:'sheepfoldLevel', capacity:'sheepfoldCapacity', product:'wool', productName:'шерсть', buyCost:250, upgradeCost:3200, addCapacity:2, collectAmount:6, label:'овца' },
-    cowbarn: { count:'cows', level:'cowbarnLevel', capacity:'cowbarnCapacity', product:'milk', productName:'молоко', buyCost:500, upgradeCost:4500, addCapacity:1, collectAmount:12, label:'корова' },
+    pigsty: { count:'pigs', level:'pigstyLevel', capacity:'pigstyCapacity', product:'meat', productName:'мясо', buyCost:300, upgradeCost:2500, addCapacity:1, collectAmount:2, label:'свинья' },
+    sheepfold: { count:'sheep', level:'sheepfoldLevel', capacity:'sheepfoldCapacity', product:'wool', productName:'шерсть', buyCost:250, upgradeCost:2800, addCapacity:2, collectAmount:2, label:'овца' },
+    cowbarn: { count:'cows', level:'cowbarnLevel', capacity:'cowbarnCapacity', product:'milk', productName:'молоко', buyCost:500, upgradeCost:3200, addCapacity:1, collectAmount:2, label:'корова' },
   };
 
   function buyAnimal(type) {
@@ -551,6 +580,7 @@
     state.coins -= c.buyCost;
     state[c.count] += 1;
     save();
+    renderSceneArt();
     toast(`${c.label[0].toUpperCase() + c.label.slice(1)} куплена`);
   }
 
@@ -563,6 +593,7 @@
     state[c.level] += 1;
     state[c.capacity] += c.addCapacity;
     save();
+    renderSceneArt();
     toast(`Загон улучшен: +${c.addCapacity} места`);
   }
 
@@ -573,6 +604,7 @@
     state[c.product] += gain;
     if (c.product === 'milk') state.tasks.eggs = state.tasks.eggs || false;
     save();
+    renderSceneArt();
     toast(`Собрано: ${c.productName} +${gain}`);
   }
 
@@ -584,15 +616,20 @@
     state.coins -= 100;
     state.chickens += 1;
     save();
+    renderSceneArt();
     toast('Курица куплена');
   }
 
   function upgradeCoop() {
-    if (state.coins < 3800) return toast('Нужно 3 800 монет');
-    state.coins -= 3800;
+    const costs = [0, 1500, 2400, 3800, 5200];
+    if ((state.coopLevel || 1) >= 4) return toast('Курятник уже максимального уровня');
+    const cost = costs[state.coopLevel || 1];
+    if (state.coins < cost) return toast('Нужно ' + fmt(cost) + ' монет');
+    state.coins -= cost;
     state.coopLevel += 1;
     state.coopCapacity += 4;
     save();
+    renderSceneArt();
     toast('Курятник улучшен: +4 места');
   }
 
@@ -605,7 +642,7 @@
 
   function resetGame() {
     localStorage.removeItem(STORE_KEY);
-    state = structuredClone(defaults);
+    state = deepCopy(defaults);
     closeModal();
     setScreen('home', false);
     toast('Прогресс сброшен');
